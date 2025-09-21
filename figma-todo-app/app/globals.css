@@ -1,0 +1,129 @@
+:root {
+  --bg: #0b1020;
+  --panel: #0f172a;
+  --text: #e6eaf2;
+  --muted: #9aa3b2;
+  --accent: #7c5cff;
+  --accent-2: #43e2ff;
+  --border: #1e2533;
+  --success: #38d39f;
+  --danger: #ff7a7a;
+}
+
+* { box-sizing: border-box; }
+html, body { height: 100%; }
+body {
+  margin: 0;
+  font-family: Inter, ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial;
+  font-size: 17px;
+  background: radial-gradient(1000px 700px at 15% -10%, #151a2e 0%, #0b1020 55%) fixed;
+  color: var(--text);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+.container { max-width: 720px; margin: 0 auto; padding: 24px; }
+.header { display:flex; align-items:center; justify-content:space-between; padding: 20px 0 16px; }
+.header h1 { margin:0; font-size: 30px; letter-spacing: 0.3px; font-weight: 800; }
+.footer { color: var(--muted); font-size: 12px; padding: 28px 0; text-align: center; }
+
+.todo {
+  background: color-mix(in oklab, var(--panel) 88%, black);
+  border: 1px solid var(--border);
+  border-radius: 18px;
+  padding: 18px;
+  box-shadow: 0 14px 40px rgba(0,0,0,0.28);
+  backdrop-filter: blur(6px);
+}
+
+.add { display:flex; gap: 10px; align-items: center; }
+.add input {
+  flex:1;
+  background: rgba(255,255,255,0.02);
+  border: 1px solid var(--border);
+  color: var(--text);
+  padding: 14px 16px;
+  border-radius: 14px;
+  outline: none;
+  transition: border .2s, box-shadow .2s, background .2s;
+}
+.add input::placeholder { color: color-mix(in oklab, var(--muted) 70%, black); }
+.add input:focus {
+  border-color: color-mix(in oklab, var(--accent) 65%, white);
+  box-shadow: 0 0 0 3px rgba(124,92,255,.18);
+  background: rgba(255,255,255,0.03);
+}
+.add button {
+  background: linear-gradient(135deg, var(--accent), var(--accent-2));
+  border: none;
+  color: white;
+  padding: 12px 16px;
+  border-radius: 14px;
+  cursor: pointer;
+  font-weight: 700;
+  min-width: 84px;
+  transition: transform .06s ease, box-shadow .2s ease, filter .2s ease;
+  box-shadow: 0 6px 18px rgba(124,92,255,.28);
+}
+.add button:hover { filter: brightness(1.05); }
+.add button:active { transform: translateY(1px); }
+
+.list { list-style: none; margin: 14px 0 10px; padding: 0; display:flex; flex-direction:column; gap: 10px; }
+.list li {
+  display:flex; align-items:center; gap: 12px;
+  background: rgba(255,255,255,0.03);
+  border:1px solid var(--border);
+  border-radius: 14px; padding: 12px 14px;
+  transition: background .15s ease, border-color .15s ease, transform .06s ease;
+}
+.list li:hover { background: rgba(255,255,255,0.04); }
+.list li:active { transform: translateY(1px); }
+.list li.done span { text-decoration: line-through; color: var(--muted); }
+.list label { display:flex; align-items:center; gap:12px; flex:1; cursor: pointer; }
+.list input[type="checkbox"] {
+  appearance: none;
+  width: 22px; height: 22px; min-width: 22px;
+  border-radius: 6px;
+  border: 2px solid color-mix(in oklab, var(--muted) 55%, black);
+  background: transparent;
+  position: relative;
+  transition: background .15s ease, border-color .15s ease, box-shadow .15s ease;
+}
+.list input[type="checkbox"]:focus {
+  outline: none;
+  box-shadow: 0 0 0 3px rgba(67,226,255,.18);
+}
+.list input[type="checkbox"]:checked {
+  border-color: color-mix(in oklab, var(--success) 75%, white);
+  background: color-mix(in oklab, var(--success) 45%, black);
+}
+.list input[type="checkbox"]:checked::after {
+  content: "";
+  position: absolute; inset: 4px 3px 3px 6px;
+  border: solid white; border-width: 0 0 3px 3px;
+  transform: rotate(-45deg);
+}
+.list .delete {
+  background: transparent; border: none;
+  color: var(--danger); font-size: 22px; line-height: 1;
+  cursor: pointer; padding: 6px 8px; border-radius: 10px;
+  transition: background .15s ease, transform .06s ease, filter .15s ease;
+}
+.list .delete:hover { background: rgba(255, 122, 122, .08); filter: brightness(1.05); }
+.list .delete:active { transform: translateY(1px); }
+
+.toolbar { display:flex; align-items:center; justify-content:space-between; padding-top: 10px; color: var(--muted); }
+.toolbar button {
+  background: rgba(255,255,255,0.02);
+  border:1px solid var(--border); color: var(--text);
+  padding: 10px 12px; border-radius: 12px; cursor: pointer;
+  transition: background .15s ease, border-color .15s ease;
+}
+.toolbar button:hover { background: rgba(255,255,255,0.04); border-color: color-mix(in oklab, var(--accent) 45%, white); }
+
+@media (max-width: 480px){
+  .container { padding: 16px; }
+  .add button { min-width: 72px; padding: 12px 14px; }
+  .list li { padding: 12px; }
+  .list input[type="checkbox"] { width: 24px; height: 24px; }
+}
